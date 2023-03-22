@@ -4,24 +4,13 @@
     transition-timing-function: ease-in-out;
 } */
 
-html,
-body {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    padding: 0;
-    margin: 0;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 
 #mazeContainer {
     transition-property: opacity;
     transition-duration: 1s;
     transition-timing-function: linear;
-    top: 75px;
+    position: relative;
+    top: 100px;
     opacity: 0;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.30);
@@ -159,6 +148,43 @@ select {
     100% {
         background-position: 0% 50%
     }
+}
+
+.timer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.progress-frame {
+    fill: transparent;
+    stroke: rgb(245, 78, 142);
+    stroke-width: 5px;
+}
+
+.progress {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 5px;
+    stroke-linecap: round;
+    transition: linear 1s;
+}
+.time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 38px;
+    color: rgb(238, 238, 238);
+}
+.cd-timer{
+    float:left;
+    position: relative;
+    top:110px;
+    left:50%;
 }
 
  /* Extra small devices (phones, 600px and down) */
