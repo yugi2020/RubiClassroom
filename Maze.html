@@ -11,6 +11,15 @@
     </head>
     <body>
         <div id="gradient"></div>
+        <div class="cd-timer">
+        <svg class="timer">
+          <circle class="progress-frame" cx="100" cy="100" r="50"></circle>
+          <circle class="progress" cx="100" cy="100" r="50"></circle>
+      </svg>
+      <div class="time">
+          <p><span class="seconds">59</span></p>
+      </div>
+    </div>
     <div id="page">
       <div id="Message-Container">
         <div id="message">
@@ -40,5 +49,33 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
+    <script>
+        let progressElm = document.getElementsByClassName('progress')[0];
+        let circumference = 2 * Math.PI * progressElm.getAttribute('r');
+
+        progressElm.style.strokeDasharray = circumference;
+        progressElm.style.strokeDashoffset = circumference * 0;
+
+        let max = parseInt(document.getElementsByClassName('seconds')[0].textContent);
+        let seconds = max;
+
+        let secondsElm = document.getElementsByClassName('seconds')[0];
+
+        let timerId = setInterval(() => {
+        seconds--;
+        if(seconds <= 0)
+        clearInterval(timerId);
+
+        percentage = seconds/max * 100;
+        progressElm.style.strokeDashoffset = circumference - (percentage/100) * circumference;
+
+        secondsElm.textContent = seconds.toString().padStart(2, '0');
+        }, 1000);
+
+        setTimeout(function(){
+          location.reload(3);
+        alert("Time's Up! Restart again!");
+        }, 60000);
+    </script>
     </body>
 </html>
